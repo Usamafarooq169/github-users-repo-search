@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import github from "../apis/github";
+import { useSelector, useDispatch } from "react-redux";
+
 import RepoList from "../repositories/RepoList";
+import { getRepos } from "../../store/actions";
 
 export default function FetchedUserDetails(props) {
-  const [userRepos, setUserRepos] = useState([]);
+  // const [userRepos, setUserRepos] = useState([]);
   const [showTimeline, setShowTimeline] = useState(false);
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector((state) => state.user);
+  const userRepos = useSelector((state) => state.repos);
 
   const handleClick = async () => {
-    const response = await github.get(`/${props.username}/repos`);
-    setUserRepos(response.data);
+    dispatch(getRepos(currentUser.login));
     setShowTimeline(true);
-    console.log(response.data);
   };
 
   return (
@@ -35,36 +39,12 @@ export default function FetchedUserDetails(props) {
             </p>
           </div>
         </h2>
-        {/* <div className="card-body">
-          <div>
-            <h5 className="card-title">
-              User ID: <strong>{props.userId}</strong>
-            </h5>
-            <p className="card-text">
-              <strong>Bio:</strong> {props.userBio}
-            </p>
-            <p className="card-text">
-              <strong>Location: </strong> {props.location}
-            </p>
-            <p className="card-text">
-              <strong>Total Repositories: </strong> {props.totalRepos}
-            </p>
-          </div>
-          <div className="d-flex justify-content-end">
-            <img
-              src={props.avatarUrl}
-              className="float-right rounded-circle "
-              alt="Avatar not found"
-              style={{ width: "86px" }}
 
-            />
-          </div>
-        </div> */}
         <button className="btn btn-primary mt-2 w-100" onClick={handleClick}>
           Generate Repository Timeline
         </button>
       </div>
-      <RepoList repos={userRepos} />
+      {showTimeline && <RepoList repos={userRepos} />}
     </>
   );
 }

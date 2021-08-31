@@ -1,27 +1,32 @@
 import React, { useRef, useState } from "react";
-import github from "../apis/github";
+import { useSelector, useDispatch } from "react-redux";
+
 import { Alert } from "react-bootstrap";
+
 import FetchedUserDetails from "./FetchedUserDetails";
+
+import { getUser } from "../../store/actions";
 
 const SearchBar = () => {
   const searchTermRef = useRef();
   const [error, setError] = useState("");
   const [preview, setPreview] = useState(false);
-  const [fetchedData, setFetchedData] = useState({});
+
+  const currentUser = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const submitHandler = async (event) => {
     event.preventDefault();
 
     try {
       setError("");
-      const response = await github.get(`/${searchTermRef.current.value}`);
+      dispatch(getUser(searchTermRef.current.value));
       setPreview(true);
-      setFetchedData(response.data);
     } catch {
       setError("Username not found! Please Enter a valid GITHUB username");
     }
   };
-  console.log("From State: ", fetchedData);
+  console.log("From Redux: ", currentUser);
   //   console.log("Username: ", fetchedData.login);
   //   console.log("ID: ", fetchedData.id);
   //   console.log("ID: ", fetchedData.avatar_url);
@@ -53,13 +58,13 @@ const SearchBar = () => {
 
       {preview && (
         <FetchedUserDetails
-          username={fetchedData.login}
-          userId={fetchedData.id}
-          avatarUrl={fetchedData.avatar_url}
-          userBio={fetchedData.bio}
-          reposUrl={fetchedData.repos_url}
-          location={fetchedData.location}
-          totalRepos={fetchedData.public_repos}
+          username={currentUser.login}
+          userId={currentUser.id}
+          avatarUrl={currentUser.avatar_url}
+          userBio={currentUser.bio}
+          reposUrl={currentUser.repos_url}
+          location={currentUser.location}
+          totalRepos={currentUser.public_repos}
         />
       )}
     </div>
