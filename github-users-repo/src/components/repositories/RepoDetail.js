@@ -7,7 +7,7 @@ const FetchedItem = (props) => {
   return (
     <React.Fragment key={props.id}>
       <div className="eight wide column">
-        <Card>
+        {/* <Card>
           <div>
             <div>
               <div>
@@ -26,7 +26,18 @@ const FetchedItem = (props) => {
               </div>
             </div>
           </div>
-        </Card>
+        </Card> */}
+
+        <h2 class="ui header">
+          <img src="https://image.flaticon.com/icons/png/512/25/25231.png" />
+          <div class="content">
+            Repository Name: {props.name}
+            <div class="sub header">Repository ID: {props.id}</div>
+            <div class="sub header">
+              <a href={props.url}>{props.name}</a>
+            </div>
+          </div>
+        </h2>
       </div>
     </React.Fragment>
   );

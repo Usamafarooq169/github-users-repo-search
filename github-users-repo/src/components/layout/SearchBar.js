@@ -58,6 +58,8 @@ const SearchBar = () => {
           avatarUrl={fetchedData.avatar_url}
           userBio={fetchedData.bio}
           reposUrl={fetchedData.repos_url}
+          location={fetchedData.location}
+          totalRepos={fetchedData.public_repos}
         />
       )}
     </div>
