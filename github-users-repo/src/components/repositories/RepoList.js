@@ -1,14 +1,17 @@
 import RepoDetail from "./RepoDetail";
+import Item from "../layout/Item";
 
 const RepoList = (props) => {
   return (
-    <div className="ui grid">
+    <div className="mt-4">
       {props.repos.map((item) => (
-        <RepoDetail
+        <Item
           key={item.id}
           id={item.id}
           name={item.name}
           url={item.html_url}
+          username={props.username}
+          userUrl={props.userUrl}
         />
       ))}
     </div>

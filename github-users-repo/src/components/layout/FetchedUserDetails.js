@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import GetAppIcon from "@material-ui/icons/GetApp";
 import RepoList from "../repositories/RepoList";
 import { getRepos } from "../../store/actions";
 
@@ -41,10 +41,16 @@ export default function FetchedUserDetails(props) {
         </h2>
 
         <button className="btn btn-primary mt-2 w-100" onClick={handleClick}>
-          Generate Repository Timeline
+          <GetAppIcon /> Generate Repository Timeline
         </button>
       </div>
-      {showTimeline && <RepoList repos={userRepos} />}
+      {showTimeline && (
+        <RepoList
+          repos={userRepos}
+          username={props.username}
+          userUrl={props.html_url}
+        />
+      )}
     </>
   );
 }

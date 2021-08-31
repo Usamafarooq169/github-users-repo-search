@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Alert } from "react-bootstrap";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import SearchIcon from "@material-ui/icons/Search";
 
 import FetchedUserDetails from "./FetchedUserDetails";
 
@@ -27,9 +29,7 @@ const SearchBar = () => {
     }
   };
   console.log("From Redux: ", currentUser);
-  //   console.log("Username: ", fetchedData.login);
-  //   console.log("ID: ", fetchedData.id);
-  //   console.log("ID: ", fetchedData.avatar_url);
+
   return (
     <div className="search-bar ui segment">
       {error && <Alert variant="danger">{error}</Alert>}
@@ -40,7 +40,9 @@ const SearchBar = () => {
 
         <div className="input-group mb-2 mr-sm-2 mt-4">
           <div className="input-group-prepend">
-            <div className="input-group-text">@</div>
+            <div className="input-group-text">
+              <AccountBoxIcon />
+            </div>
           </div>
           <input
             type="text"
@@ -51,8 +53,8 @@ const SearchBar = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary mb-2 mt-4">
-          Search user
+        <button type="submit" className="btn btn-primary mb-2 mt-4 ">
+          <SearchIcon /> Search user
         </button>
       </form>
 

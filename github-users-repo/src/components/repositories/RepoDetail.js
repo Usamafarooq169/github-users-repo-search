@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-
-import { Card } from "react-bootstrap";
-import classes from "./RepoDetail.module.css";
+import React from "react";
 
 const FetchedItem = (props) => {
   return (
