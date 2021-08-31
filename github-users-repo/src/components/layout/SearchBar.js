@@ -1,25 +1,38 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import github from "../apis/github";
-
-import { Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
+import Card from "../layout/Card";
 
 const SearchBar = () => {
   const searchTermRef = useRef();
+  const [error, setError] = useState("");
+  const [preview, setPreview] = useState(false);
+  const [fetchedData, setFetchedData] = useState({});
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    // const response = await fetch("https://api.github.com/users/usamafarooq169");
-    const response = await github.get(`/${searchTermRef.current.value}`);
-    console.log(response.data);
-    // console.log(`Searchterm: ${searchTermRef.current.value}`);
-  };
 
+    try {
+      setError("");
+      const response = await github.get(`/${searchTermRef.current.value}`);
+      setPreview(true);
+      setFetchedData(response.data);
+    } catch {
+      setError("Username not found! Please Enter a valid GITHUB username");
+    }
+  };
+  console.log("From State: ", fetchedData);
+  //   console.log("Username: ", fetchedData.login);
+  //   console.log("ID: ", fetchedData.id);
+  //   console.log("ID: ", fetchedData.avatar_url);
   return (
     <div className="search-bar ui segment">
+      {error && <Alert variant="danger">{error}</Alert>}
       <form className="form-inline" onSubmit={submitHandler}>
         <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">
-          <h4>Github username</h4>
+          <h4>Github Username</h4>
         </label>
+
         <div className="input-group mb-2 mr-sm-2 mt-4">
           <div className="input-group-prepend">
             <div className="input-group-text">@</div>
@@ -33,19 +46,19 @@ const SearchBar = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary mb-2">
+        <button type="submit" className="btn btn-primary mb-2 mt-4">
           Search user
         </button>
       </form>
 
-      {/* <Button
-        className="btn btn-primary"
-        onClick={() => {
-          submitHandler();
-        }}
-      >
-        Search user
-      </Button> */}
+      {preview && (
+        <Card
+          username={fetchedData.login}
+          userId={fetchedData.id}
+          avatarUrl={fetchedData.avatar_url}
+          userBio={fetchedData.bio}
+        />
+      )}
     </div>
   );
 };
