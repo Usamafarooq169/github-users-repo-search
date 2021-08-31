@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import github from "../apis/github";
 import { Alert } from "react-bootstrap";
-import Card from "../layout/Card";
+import FetchedUserDetails from "./FetchedUserDetails";
 
 const SearchBar = () => {
   const searchTermRef = useRef();
@@ -52,11 +52,12 @@ const SearchBar = () => {
       </form>
 
       {preview && (
-        <Card
+        <FetchedUserDetails
           username={fetchedData.login}
           userId={fetchedData.id}
           avatarUrl={fetchedData.avatar_url}
           userBio={fetchedData.bio}
+          reposUrl={fetchedData.repos_url}
         />
       )}
     </div>
