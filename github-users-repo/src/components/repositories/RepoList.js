@@ -1,27 +1,18 @@
-import { connect } from "react-redux";
+import RepoDetail from "./RepoDetail";
 
-import FetchedItem from "./fetchedItem";
-
-import { viewRecord } from "../../actions";
-
-const FetchedList = (props) => {
+const RepoList = (props) => {
   return (
     <div className="ui grid">
-      {props.posts.map((item, index) => (
-        <FetchedItem
+      {props.repos.map((item) => (
+        <RepoDetail
           key={item.id}
           id={item.id}
-          title={item.title}
-          description={item.body}
-          index={index}
+          name={item.name}
+          url={item.html_url}
         />
       ))}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return { posts: state.posts };
-};
-
-export default connect(mapStateToProps, { viewRecord })(FetchedList);
+export default RepoList;
