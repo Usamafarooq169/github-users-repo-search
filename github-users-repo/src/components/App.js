@@ -3,9 +3,9 @@ import SearchBar from "./layout/SearchBar";
 
 function App() {
   return (
-    <>
+    <React.Fragment>
       <SearchBar />
-    </>
+    </React.Fragment>
   );
 }
 

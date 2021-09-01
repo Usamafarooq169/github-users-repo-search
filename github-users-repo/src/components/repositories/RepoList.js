@@ -12,6 +12,7 @@ const RepoList = (props) => {
           url={item.html_url}
           username={props.username}
           userUrl={props.userUrl}
+          focusLanguage={item.language}
         />
       ))}
     </div>
