@@ -2,19 +2,18 @@ import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Alert from "@material-ui/lab/Alert";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
+
 import PageviewOutlinedIcon from "@material-ui/icons/PageviewOutlined";
 import ContactsIcon from "@material-ui/icons/Contacts";
 
 import FetchedUserDetails from "./FetchedUserDetails";
 
 import { getUser } from "../../store/actions";
+
 import {
   Container,
-  TextField,
   FormControl,
   FormHelperText,
-  FormLabel,
   Button,
   InputLabel,
   Input,
@@ -53,47 +52,7 @@ const SearchBar = () => {
   console.log("From Redux: ", currentUser);
 
   return (
-    // <div className="search-bar ui segment">
-    // {/* {error && <Alert severity="error">{error}</Alert>} */}
-    //   {error && <div>Hello Error</div>}
-    //   <form className="form-inline" onSubmit={submitHandler}>
-    //     <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">
-    //       <h4>Github Username</h4>
-    //     </label>
-
-    //     <div className="input-group mb-2 mr-sm-2 mt-4">
-    //       <div className="input-group-prepend">
-    //         <div className="input-group-text">
-    //           <AccountBoxIcon />
-    //         </div>
-    //       </div>
-    //       <input
-    //         type="text"
-    //         className="form-control"
-    //         id="inlineFormInputGroupUsername2"
-    //         placeholder="Username"
-    //         ref={searchTermRef}
-    //       />
-    //     </div>
-
-    //     <button type="submit" className="btn btn-primary mb-2 mt-4 ">
-    //       <SearchIcon /> Search user
-    //     </button>
-    //   </form>
-
-    // {preview && (
-    //   <FetchedUserDetails
-    //     username={currentUser.login}
-    //     userId={currentUser.id}
-    //     avatarUrl={currentUser.avatar_url}
-    //     userBio={currentUser.bio}
-    //     reposUrl={currentUser.repos_url}
-    //     location={currentUser.location}
-    //     totalRepos={currentUser.public_repos}
-    //   />
-    // )}
-    // </div>
-    <div style={{ marginTop: 15 }}>
+    <div style={{ marginTop: 30 }}>
       <Container maxWidth="xs">
         {error && <Alert severity="error">Error is there</Alert>}
         <form onSubmit={submitHandler}>
@@ -118,6 +77,7 @@ const SearchBar = () => {
               color="primary"
               startIcon={<PageviewOutlinedIcon />}
               type="submit"
+              style={{ marginTop: 15 }}
             >
               Search
             </Button>

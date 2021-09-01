@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import {
-  Paper,
-  Avatar,
-  Grid,
   Typography,
   Card,
   CardActionArea,
@@ -19,10 +16,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import RepoList from "../repositories/RepoList";
 import { getRepos } from "../../store/actions";
+import GithubAuth from "../auth/GithubAuth";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 880,
   },
   media: {
     height: 140,
@@ -70,9 +68,16 @@ export default function FetchedUserDetails(props) {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button size="medium" color="primary" onClick={handleClick}>
+            <Button
+              size="small"
+              variant="outlined"
+              color="primary"
+              onClick={handleClick}
+              startIcon={<GetAppIcon />}
+            >
               Generate Timeline
             </Button>
+            <GithubAuth username={props.username} userUrl={props.html_url} />
           </CardActions>
         </Card>
       </Container>
