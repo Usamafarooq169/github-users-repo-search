@@ -73,13 +73,13 @@ function GithubAuth(props) {
         Generate Timeline By Authenticating
       </Button>
 
-      {showTimeline && (
+      {/* {showTimeline && (
         <RepoList
           repos={repos}
           username={props.username}
           userUrl={props.html_url}
         />
-      )}
+      )} */}
     </>
   );
 }

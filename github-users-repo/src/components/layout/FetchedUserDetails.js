@@ -77,7 +77,10 @@ export default function FetchedUserDetails(props) {
             >
               Generate Timeline
             </Button>
-            <GithubAuth username={props.username} userUrl={props.html_url} />
+
+            <div onClick={() => setShowTimeline(true)}>
+              <GithubAuth username={props.username} userUrl={props.html_url} />
+            </div>
           </CardActions>
         </Card>
       </Container>
