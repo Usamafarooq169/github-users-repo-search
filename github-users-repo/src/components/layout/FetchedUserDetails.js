@@ -91,6 +91,13 @@ export default function FetchedUserDetails(props) {
           userUrl={props.html_url}
         />
       )}
+      {props.isQL === "TRUE" && (
+        <RepoList
+          repos={props.repos}
+          username={props.username}
+          userUrl={props.userUrl}
+        />
+      )}
     </>
   );
 }

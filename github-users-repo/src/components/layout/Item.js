@@ -30,40 +30,6 @@ export default function Item(props) {
   const classes = useStyles();
 
   return (
-    // <div className={classes.root} style={{ marginTop: 10 }}>
-    //   <Paper className={classes.paper}>
-    //     <Grid container spacing={2}>
-    //       <Grid item>
-    //         <ButtonBase className={classes.image}>
-    //           <GitHubIcon style={{ width: "64", height: "64" }} />
-    //         </ButtonBase>
-    //       </Grid>
-    //       <Grid item xs={12} sm container>
-    //         <Grid item xs container direction="column" spacing={2}>
-    //           <Grid item xs>
-    //             <Typography gutterBottom variant="subtitle1">
-    //               {props.name}
-    //             </Typography>
-    //             <Typography variant="body2" gutterBottom>
-    //               Main Focus:
-    //             </Typography>
-    //             <Typography variant="body2" color="textSecondary">
-    //               {props.id}
-    //             </Typography>
-    //           </Grid>
-    //           <Grid item>
-    //             <Typography variant="body2" style={{ cursor: "pointer" }}>
-    //               <a href={props.url} style={{ color: "black" }}>
-    //                 <DynamicFeedIcon /> View on Github
-    //               </a>
-    //             </Typography>
-    //           </Grid>
-    //         </Grid>
-    //       </Grid>
-    //     </Grid>
-    //   </Paper>
-    // </div>
-
     <>
       <Timeline align="alternate">
         <TimelineItem>

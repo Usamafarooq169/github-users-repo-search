@@ -13,6 +13,7 @@ const RepoList = (props) => {
           username={props.username}
           userUrl={props.userUrl}
           focusLanguage={item.language}
+          isPrivate={item.private}
         />
       ))}
     </div>
